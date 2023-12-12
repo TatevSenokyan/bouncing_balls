@@ -12,6 +12,7 @@ export class Ball {
     }
 
     calcSpeed (height) {
+       // formula is taken from physics h = 16t^2
        return (height/Math.sqrt(height/16))/(60);
     }
     draw () {
@@ -36,7 +37,6 @@ export class Ball {
        }
 
         this.y += this.speed;
-
-         
+ 
     };
 }
