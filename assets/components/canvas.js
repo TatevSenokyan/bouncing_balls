@@ -13,5 +13,7 @@ class Canvas {
     }
 }
 
-export const canvas = new Canvas();
+const canvas = new Canvas();
 canvas.setSize();
+
+export const context = canvas.context();

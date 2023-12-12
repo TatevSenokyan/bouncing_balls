@@ -1,22 +1,18 @@
 
-const speed = (h) => {
-    // h = 16t^2; formula is taken from physics
-    return (h/Math.sqrt(h/16))/(60);
-}
-// function tick(currenttimr) {
-//     const deltatime = current -localStorage
-//     last = current
-// }
 export class Ball {
-    static restCoefficient = 0.4;
+    static restitutionCoefficient = 0.4;
     constructor(x, y, context, random) {
-        this.minY = y;
         this.radius = random(10, 20);
-        this.x = x;
-        this.y = y;
+        this.minY = y || random(this.radius, innerHeight-this.radius);
+        this.x = x || random(this.radius, innerWidth-this.radius);
+        this.y = y || this.minY;
         this.context = context;
-        this.yDelta = speed(window.innerHeight-this.minY);
+        this.speed = this.calcSpeed(innerHeight-this.minY);
         this.color = "rgb(" + random(0, 255) + ", " + random(0, 255) + ", " + random(0, 255) + ")";
+    }
+
+    calcSpeed (height) {
+       return (height/Math.sqrt(height/16))/(60);
     }
     draw () {
       this.context.fillStyle = this.color;
@@ -26,20 +22,20 @@ export class Ball {
     };
 
     update () {
-        if (((this.y + this.radius) > window.innerHeight) && this.yDelta>0) {
-            this.minY += (window.innerHeight-this.minY)*Ball.restCoefficient;
-            this.yDelta *= -1;
+        if (((this.y + this.radius) > innerHeight) && this.speed>0) {
+            this.minY += (innerHeight-this.minY)*Ball.restitutionCoefficient;
+            this.speed *= -1;
         }
 
-       if (((this.y - this.radius) < this.minY) && this.yDelta<0) {
-           this.yDelta *= -1;
+       if (((this.y - this.radius) < this.minY) && this.speed<0) {
+           this.speed *= -1;
        }
 
-       if ((this.minY+this.radius)>window.innerHeight) {
-          this.yDelta = 0
+       if ((this.minY+this.radius)> innerHeight) {
+          this.speed = 0
        }
 
-        this.y += this.yDelta;
+        this.y += this.speed;
 
          
     };
