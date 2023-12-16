@@ -1,0 +1,67 @@
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.dark {
+    color: #fff;
+    background-color: #212529;
+}
+canvas {
+    position: absolute;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    height: 50px;
+    position: absolute;
+    background-color: transparent;
+    padding: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+nav div {
+    display: flex;
+    gap: 10px;
+}
+nav div div {
+    width: 60px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1px 6px;
+    align-items: center;
+    border-radius: 30px;
+    background-color: #c7c7c7;
+}
+nav div div div {
+   width: 17px;
+   height: 22px;
+   background: #FFF;
+   border-radius: 100px;
+   position: absolute;
+   cursor: pointer;
+   z-index: 10;
+}
+
+.soundOn {
+    transform: translateX(33px);
+    transition: all 0.1s linear;
+}
+.soundOnBg {
+    background-color: #2196F3;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+    z-index: 10;
+    cursor: pointer;
+}

@@ -1,12 +1,15 @@
 
+
 export class Ball {
     static restitutionCoefficient = 0.4;
-    constructor(x, y, context, random) {
+    constructor(x, y, context, random, sound, playSound) {
         this.radius = random(10, 20);
         this.minY = y || random(this.radius, innerHeight-this.radius);
         this.x = x || random(this.radius, innerWidth-this.radius);
         this.y = y || this.minY;
         this.context = context;
+        this.sound = sound;
+        this.playSound = playSound;
         this.speed = this.calcSpeed(innerHeight-this.minY);
         this.color = "rgb(" + random(0, 255) + ", " + random(0, 255) + ", " + random(0, 255) + ")";
     }
@@ -24,6 +27,7 @@ export class Ball {
 
     update () {
         if (((this.y + this.radius) > innerHeight) && this.speed>0) {
+            this.playSound && this.sound();
             this.minY += (innerHeight-this.minY)*Ball.restitutionCoefficient;
             this.speed *= -1;
         }
