@@ -24,7 +24,7 @@ document.addEventListener("click", function (event) {
   data.addBall(event.x, event.y, context);
 });
 
-document.querySelector("nav div>div>div").addEventListener('click', function(event) {
+document.querySelector(".switchPart>div").addEventListener('click', function(event) {
   event.stopPropagation();
   data.soundState();
   this.classList.toggle("soundOn");
